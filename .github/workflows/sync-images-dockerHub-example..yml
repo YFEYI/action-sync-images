@@ -34,4 +34,14 @@ jobs:
       run: |
         #!/usr/bin/env bash
         skopeo copy docker://gcr.io/kaniko-project/executor:v1.13.0 docker://weiyigeek/kaniko-executor:v1.13.0
- 
+ # 使用shell命令批量同步所需的镜像到dockerHub中
+    - name: Use Skopeo Tools Sync Image to Docker Hub
+      run: |
+        #!/usr/bin/env bash
+        skopeo copy --all docker://registry.k8s.io/kube-apiserver:v1.27.4 docker://docker.io/yfeyi007/kube-apiserver:v1.27.4
+        skopeo copy --all docker://registry.k8s.io/kube-controller-manager:v1.27.4 docker://docker.io/yfeyi007/kube-controller-manager:v1.27.4
+        skopeo copy --all docker://registry.k8s.io/kube-scheduler:v1.27.4 docker://docker.io/yfeyi007/kube-scheduler:v1.27.4
+        skopeo copy --all docker://registry.k8s.io/kube-proxy:v1.27.4 docker://docker.io/yfeyi007/kube-proxy:v1.27.4
+        skopeo copy --all docker://registry.k8s.io/pause:3.9 docker://docker.io/yfeyi007/pause:3.9
+        skopeo copy --all docker://registry.k8s.io/etcd:3.5.7-0 docker://docker.io/yfeyi007/etcd:3.5.7-0
+        skopeo copy --all docker://registry.k8s.io/coredns/coredns:v1.10.1 docker://docker.io/yfeyi007/coredns:v1.10.1
